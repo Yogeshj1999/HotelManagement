@@ -5,6 +5,7 @@ import { RoomsListComponent } from "./room-list/room-list.component";
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { catchError, map, Observable, of, Subject } from 'rxjs';
+import { ConfigService } from '../services/config.service';
 @Component({
   selector: 'app-rooms',
   // imports: [CommonModule, RoomsListComponent],
@@ -40,7 +41,7 @@ export class RoomsComponent implements OnInit,AfterViewInit{
   roomsCount = this.roomsService.getRooms$.pipe(
     map((room)=>room.length)
   );
-  constructor(private roomsService:RoomsService) { }
+  constructor(private roomsService:RoomsService, private configService:ConfigService) { }
 
   stream = new Observable<string>((observer)=>{
     observer.next('hello');
